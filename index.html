@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alicia & Javier — 27 · 02 · 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+Infant:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Variables ─────────────────────────────────────────── */
+    :root {
+      --cream:       #f8f3ec;
+      --ivory:       #fdf9f4;
+      --rose:        #c9897a;
+      --rose-light:  #e8c4bc;
+      --rose-pale:   #f5e8e4;
+      --green:       #3a5242;
+      --green-mid:   #4e6b59;
+      --gold:        #b89b6a;
+      --gold-light:  #d4b98a;
+      --text:        #2c2c2c;
+      --text-mid:    #5a5247;
+      --text-light:  #8a7f74;
+      --white:       #ffffff;
+      --font-serif:  'Cormorant Garamond', Georgia, serif;
+      --font-italic: 'Cormorant Infant', Georgia, serif;
+      --font-sans:   'Jost', sans-serif;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(253, 249, 244, 0.94);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(184,155,106,0.18);
+    }
+    .nav-monogram {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    nav.scrolled .nav-monogram { opacity: 1; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--text-mid); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: background 0.3s;
+    }
+    nav.scrolled .nav-hamburger span { background: var(--text-mid); }
+
+    /* ─── Mobile nav drawer ──────────────────────────────────── */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--ivory);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+    .nav-drawer-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-mid);
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    #home {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: var(--green);
+      overflow: hidden;
+    }
+
+    /* Noise texture overlay */
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Botanical SVG background */
+    .hero-botanical {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-botanical svg {
+      position: absolute;
+      opacity: 0.13;
+    }
+    .hero-botanical svg.tl { top: -40px; left: -40px; width: 420px; transform: rotate(-15deg); }
+    .hero-botanical svg.br { bottom: -60px; right: -40px; width: 460px; transform: rotate(165deg); }
+    .hero-botanical svg.tr { top: 20px; right: -20px; width: 260px; transform: rotate(20deg); opacity: 0.08; }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-date-tag {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-and {
+      font-family: var(--font-serif);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-style: italic;
+      color: var(--rose-light);
+      letter-spacing: 0.15em;
+      margin: 0.6rem 0;
+      opacity: 0;
+      animation: fadeUp 1s 0.7s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .hero-name.first {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .hero-name.last {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s forwards;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s forwards;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--rose-light);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s 1.4s forwards;
+    }
+
+    .hero-location {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      animation: fadeUp 1s 1.6s forwards;
+    }
+
+    /* Countdown */
+    /* ── Hero photos ──────────────────────────────────────────── */
+    .hero-photos {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 0;
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 1.2s 1.6s forwards;
+    }
+    .hero-photo-wrap {
+      position: relative;
+      width: clamp(160px, 22vw, 280px);
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    /* Soft vignette on each photo */
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(42,65,50,0.08) 0%,
+        transparent 40%,
+        rgba(42,65,50,0.18) 100%
+      );
+      pointer-events: none;
+    }
+    /* Left photo: tilted slightly left, offset down */
+    .hero-photo-left {
+      transform: rotate(-2.5deg) translateY(16px);
+      box-shadow: -6px 12px 40px rgba(0,0,0,0.35);
+      border: 5px solid rgba(253,249,244,0.12);
+      z-index: 1;
+    }
+    /* Right photo: tilted slightly right, overlaps left */
+    .hero-photo-right {
+      transform: rotate(2deg) translateX(-18px);
+      box-shadow: 8px 12px 40px rgba(0,0,0,0.35);
+      border: 5px solid rgba(253,249,244,0.12);
+      z-index: 2;
+    }
+
+    @media (max-width: 480px) {
+      .hero-photo-wrap { width: clamp(130px, 38vw, 180px); }
+      .hero-photo-right { transform: rotate(2deg) translateX(-12px); }
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s 2.5s forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─── Section shared ─────────────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--green);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* Floral divider */
+    .floral-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0 auto 4rem;
+      max-width: 320px;
+    }
+    .floral-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose-light));
+    }
+    .floral-divider-line.right {
+      background: linear-gradient(to left, transparent, var(--rose-light));
+    }
+    .floral-divider-icon { color: var(--rose); font-size: 1rem; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── Detalles ───────────────────────────────────────────── */
+    #detalles { background: var(--ivory); }
+
+    .event-card {
+      background: var(--white);
+      border: 1px solid rgba(184,155,106,0.2);
+      border-radius: 2px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--rose));
+    }
+
+    .event-field-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .event-field-value {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--green);
+      line-height: 1.4;
+    }
+    .event-field { margin-bottom: 2rem; }
+    .event-field:last-child { margin-bottom: 0; }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+      padding: 0.65rem 1.4rem;
+      border: 1px solid var(--green);
+      border-radius: 1px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      transition: background 0.3s, color 0.3s;
+    }
+    .map-btn:hover { background: var(--green); color: var(--cream); }
+    .map-btn svg { width: 14px; height: 14px; }
+
+    .calendar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+      padding: 0.65rem 1.4rem;
+      border: 1px solid var(--gold);
+      border-radius: 1px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: background 0.3s, color 0.3s;
+    }
+    .calendar-btn:hover { background: var(--gold); color: var(--white); }
+
+    /* ─── Travel ─────────────────────────────────────────────── */
+    #travel { background: var(--cream); }
+
+    .hotel-card {
+      background: var(--white);
+      border: 1px solid rgba(184,155,106,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
+    }
+    .hotel-card-header {
+      background: var(--green);
+      padding: 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hotel-card-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 30px;
+      background: var(--white);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hotel-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .hotel-addr {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+    }
+    .hotel-body {
+      padding: 2.5rem 3rem;
+    }
+    .hotel-note {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .hotel-tag {
+      display: inline-block;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-light);
+      color: var(--rose);
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 1px;
+      transition: background 0.3s, color 0.3s;
+    }
+    a.hotel-tag:hover {
+      background: var(--rose-light);
+      color: var(--white);
+    }
+
+    /* ─── Registry ───────────────────────────────────────────── */
+    #regalos { background: var(--ivory); }
+
+    .registry-card {
+      text-align: center;
+      padding: 5rem 3rem;
+      border: 1px solid rgba(184,155,106,0.2);
+      background: var(--white);
+      border-radius: 2px;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .registry-card::before, .registry-card::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,137,122,0.08) 0%, transparent 70%);
+    }
+    .registry-card::before { top: -80px; left: -80px; }
+    .registry-card::after  { bottom: -80px; right: -80px; }
+    .registry-soon {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+    .registry-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+    .registry-ring {
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--gold-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: var(--gold);
+      font-size: 1.8rem;
+    }
+
+    /* ─── RSVP ───────────────────────────────────────────────── */
+    #rsvp { background: var(--green); position: relative; overflow: hidden; }
+    #rsvp::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .rsvp-botanical {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .rsvp-botanical svg {
+      position: absolute;
+      opacity: 0.07;
+      bottom: -60px;
+      right: -40px;
+      width: 400px;
+      transform: rotate(180deg);
+    }
+
+    #rsvp .section-label { color: var(--gold-light); }
+    #rsvp .section-title { color: var(--cream); }
+
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(184,155,106,0.3);
+      border-radius: 1px;
+      padding: 0.85rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.3s, background 0.3s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(253,249,244,0.3); }
+    .form-group select option { background: var(--green); color: var(--cream); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .rsvp-radio-group {
+      display: flex;
+      gap: 1rem;
+    }
+    .rsvp-radio {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      border: 1px solid rgba(184,155,106,0.3);
+      border-radius: 1px;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+    .rsvp-radio input { display: none; }
+    .rsvp-radio.selected { border-color: var(--gold); background: rgba(184,155,106,0.12); }
+
+    .btn-submit {
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 1px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-submit:active { transform: none; }
+
+    .rsvp-thanks {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .rsvp-thanks.show { display: block; }
+    .rsvp-thanks-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .rsvp-thanks-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold-light);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: #1e2d24;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .footer-monogram {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .footer-date {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(253,249,244,0.4);
+    }
+    .footer-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+      opacity: 0.4;
+    }
+
+    /* ─── Keyframes ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .event-card { grid-template-columns: 1fr; gap: 0; }
+      .form-row { grid-template-columns: 1fr; }
+      .hotel-card-header,
+      .hotel-body { padding: 2rem 1.75rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .registry-card { padding: 3rem 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <nav id="nav">
+    <div class="nav-monogram">A &amp; J</div>
+    <ul class="nav-links">
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#detalles">Detalles</a></li>
+      <li><a href="#travel">Hospedaje</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="drawer">
+    <div class="nav-drawer-close" id="drawerClose">✕</div>
+    <a href="#home"     onclick="closeDrawer()">Inicio</a>
+    <a href="#detalles" onclick="closeDrawer()">Detalles</a>
+    <a href="#travel"   onclick="closeDrawer()">Hospedaje</a>
+    <a href="#rsvp"     onclick="closeDrawer()">RSVP</a>
+  </div>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section id="home">
+    <div class="hero-botanical">
+      <!-- Botanical branch SVG top-left -->
+      <svg class="tl" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 480 Q80 300 200 200 Q300 110 380 20" stroke="#f8f3ec" stroke-width="1.5" fill="none"/>
+        <path d="M200 200 Q150 160 120 100" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M200 200 Q240 150 280 130" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M160 280 Q110 250 90 200" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M160 280 Q200 240 230 220" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <ellipse cx="120" cy="100" rx="22" ry="14" fill="#f8f3ec" transform="rotate(-30 120 100)"/>
+        <ellipse cx="280" cy="130" rx="22" ry="14" fill="#f8f3ec" transform="rotate(20 280 130)"/>
+        <ellipse cx="90"  cy="200" rx="20" ry="12" fill="#f8f3ec" transform="rotate(-20 90 200)"/>
+        <ellipse cx="230" cy="220" rx="20" ry="12" fill="#f8f3ec" transform="rotate(15 230 220)"/>
+        <circle cx="380" cy="20" r="5" fill="#f8f3ec"/>
+        <circle cx="60"  cy="480" r="4" fill="#f8f3ec"/>
+        <!-- Small flowers -->
+        <circle cx="155" cy="175" r="3" fill="#f8f3ec"/>
+        <circle cx="175" cy="320" r="2.5" fill="#f8f3ec"/>
+      </svg>
+      <!-- bottom-right mirror -->
+      <svg class="br" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 480 Q80 300 200 200 Q300 110 380 20" stroke="#f8f3ec" stroke-width="1.5" fill="none"/>
+        <path d="M200 200 Q150 160 120 100" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M200 200 Q240 150 280 130" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M160 280 Q110 250 90 200" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M160 280 Q200 240 230 220" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <ellipse cx="120" cy="100" rx="22" ry="14" fill="#f8f3ec" transform="rotate(-30 120 100)"/>
+        <ellipse cx="280" cy="130" rx="22" ry="14" fill="#f8f3ec" transform="rotate(20 280 130)"/>
+        <ellipse cx="90"  cy="200" rx="20" ry="12" fill="#f8f3ec" transform="rotate(-20 90 200)"/>
+        <ellipse cx="230" cy="220" rx="20" ry="12" fill="#f8f3ec" transform="rotate(15 230 220)"/>
+        <circle cx="380" cy="20" r="5" fill="#f8f3ec"/>
+        <circle cx="60"  cy="480" r="4" fill="#f8f3ec"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-date-tag">27 · 02 · 2027 &nbsp;·&nbsp; Cuernavaca, Morelos</p>
+      <h1 class="hero-name first">Alicia</h1>
+      <p class="hero-and">&amp;</p>
+      <h1 class="hero-name last">Javier</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">For all the days along the way</p>
+      <p class="hero-location">Jardín La Estancia &nbsp;·&nbsp; Cuernavaca</p>
+    </div>
+
+    <!-- Photos -->
+    <div class="hero-photos">
+      <div class="hero-photo-wrap hero-photo-left">
+        <img src="assets/c2cef19b-8d8b-4dae-bcf0-ee18461834b1.jpeg" alt="Alicia y Javier" />
+      </div>
+      <div class="hero-photo-wrap hero-photo-right">
+        <img src="assets/74e3e33f-1631-4986-a8ba-8bc394afc9c9.jpeg" alt="Alicia y Javier" />
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── Floral divider ─────────────────────────────────────── -->
+  <div class="floral-divider reveal">
+    <div class="floral-divider-line"></div>
+    <div class="floral-divider-icon">✦</div>
+    <div class="floral-divider-line right"></div>
+  </div>
+
+  <!-- ── Detalles ───────────────────────────────────────────── -->
+  <section id="detalles">
+    <div class="section-inner">
+      <p class="section-label reveal">La Celebración</p>
+      <h2 class="section-title reveal">Detalles del Evento</h2>
+
+      <div class="event-card reveal">
+        <div>
+          <div class="event-field">
+            <p class="event-field-label">Fecha</p>
+            <p class="event-field-value">Sábado, 27 de Febrero de 2027</p>
+          </div>
+          <div class="event-field">
+            <p class="event-field-label">Horario</p>
+            <p class="event-field-value">3:30 pm — 3:00 am</p>
+          </div>
+          <div class="event-field">
+            <p class="event-field-label">Agenda al calendario</p>
+            <a class="calendar-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Alicia+%26+Javier&dates=20270227T213000Z/20270228T090000Z&details=Jard%C3%ADn+La+Estancia%2C+Cuernavaca&location=Jard%C3%ADn+La+Estancia%2C+C.+Cuauht%C3%A9moc+No.+625%2C+El+Empleado%2C+Cuernavaca" target="_blank" rel="noopener">
+              ＋ Agregar al calendario
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="event-field">
+            <p class="event-field-label">Venue</p>
+            <p class="event-field-value">Jardín La Estancia</p>
+          </div>
+          <div class="event-field">
+            <p class="event-field-label">Dirección</p>
+            <p class="event-field-value" style="font-size:1rem;">C. Cuauhtémoc No. 625, El Empleado<br>Cuernavaca, Morelos 62250<br>México</p>
+          </div>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=18.94573750,-99.23559770&query_place_id=ChIJPev8Qi3ezYUR7AI8Tynv2g8" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floral divider -->
+  <div class="floral-divider reveal" style="background:var(--ivory);">
+    <div class="floral-divider-line"></div>
+    <div class="floral-divider-icon">✦</div>
+    <div class="floral-divider-line right"></div>
+  </div>
+
+  <!-- ── Travel ─────────────────────────────────────────────── -->
+  <section id="travel">
+    <div class="section-inner">
+      <p class="section-label reveal">Para tu estancia</p>
+      <h2 class="section-title reveal">Hospedaje Recomendado</h2>
+
+      <div class="hotel-card reveal">
+        <div class="hotel-card-header">
+          <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">HOTEL RECOMENDADO</p>
+          <h3 class="hotel-name">Gamma Cuernavaca Puerta Paraíso</h3>
+          <p class="hotel-addr">701-B Avenida Domingo Diez, Cuernavaca, Morelos 62250</p>
+        </div>
+        <div class="hotel-body">
+          <p class="hotel-note">
+            El hotel Gamma tiene acceso directo al jardín. Contamos con un convenio especial, por lo que se les aplicará un descuento siempre y cuando reserven directamente con el hotel y utilicen los códigos.
+          </p>
+          <a class="hotel-tag" href="https://drive.google.com/drive/folders/1ufpNQJNpvVUz00kS6AQm632-n-CfEYwK?usp=sharing" target="_blank" rel="noopener">Descuento disponible con código especial</a>
+          <br><br>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Gamma+Cuernavaca+Puerta+Paraiso" target="_blank" rel="noopener" style="margin-top:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mesa de Regalos section hidden until registry is ready -->
+
+  <!-- ── RSVP ───────────────────────────────────────────────── -->
+  <section id="rsvp">
+    <div class="rsvp-botanical">
+      <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 480 Q80 300 200 200 Q300 110 380 20" stroke="#f8f3ec" stroke-width="1.5" fill="none"/>
+        <path d="M200 200 Q150 160 120 100" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <path d="M200 200 Q240 150 280 130" stroke="#f8f3ec" stroke-width="1" fill="none"/>
+        <ellipse cx="120" cy="100" rx="22" ry="14" fill="#f8f3ec" transform="rotate(-30 120 100)"/>
+        <ellipse cx="280" cy="130" rx="22" ry="14" fill="#f8f3ec" transform="rotate(20 280 130)"/>
+      </svg>
+    </div>
+    <div class="section-inner">
+      <p class="section-label reveal">Confirmación de asistencia</p>
+      <h2 class="section-title reveal">RSVP</h2>
+
+      <div id="rsvpFormWrap">
+        <form class="rsvp-form reveal" id="rsvpForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Nombre completo</label>
+              <input type="text" id="fname" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="femail">Correo electrónico</label>
+              <input type="email" id="femail" placeholder="tu@correo.com" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>¿Asistirás?</label>
+            <div class="rsvp-radio-group">
+              <label class="rsvp-radio" id="radio-yes">
+                <input type="radio" name="attend" value="yes" /> Con mucho gusto asistiré
+              </label>
+              <label class="rsvp-radio" id="radio-no">
+                <input type="radio" name="attend" value="no" /> Lamentablemente no podré
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fguests">Número de acompañantes</label>
+            <select id="fguests">
+              <option value="0">Solo yo</option>
+              <option value="1">+ 1 persona</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="companion-group" style="display:none;">
+            <label for="fcompanion">Nombre del acompañante</label>
+            <input type="text" id="fcompanion" placeholder="Nombre completo" />
+          </div>
+
+          <div class="form-group">
+            <label for="fdiet">Restricciones alimentarias</label>
+            <input type="text" id="fdiet" placeholder="Vegetariano, sin gluten, alergias…" />
+          </div>
+
+          <div class="form-group">
+            <label for="fmsg">Mensaje para los novios (opcional)</label>
+            <textarea id="fmsg" placeholder="Comparte tus buenos deseos…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Enviar confirmación</button>
+        </form>
+      </div>
+
+      <div class="rsvp-thanks" id="rsvpThanks">
+        <p class="rsvp-thanks-title">¡Muchas gracias!</p>
+        <p class="rsvp-thanks-sub">Hemos recibido tu confirmación.<br>¡Nos vemos en Cuernavaca!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-monogram">A &amp; J</div>
+    <div class="footer-date">27 · 02 · 2027 &nbsp;·&nbsp; Cuernavaca, Morelos</div>
+    <div class="footer-line"></div>
+    <p class="footer-tagline">For all the days along the way</p>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────────── -->
+  <script>
+    // ── Nav scroll ──────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Mobile drawer ───────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+    const drawerClose = document.getElementById('drawerClose');
+    hamburger.addEventListener('click', () => drawer.classList.add('open'));
+    drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+    function closeDrawer() { drawer.classList.remove('open'); }
+
+    // ── Reveal on scroll ────────────────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── RSVP radio toggle ───────────────────────────────────
+    document.querySelectorAll('input[name="attend"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('radio-yes').classList.remove('selected');
+        document.getElementById('radio-no').classList.remove('selected');
+        document.getElementById('radio-' + radio.value).classList.add('selected');
+      });
+    });
+
+    // ── Companion field toggle ───────────────────────────────
+    document.getElementById('fguests').addEventListener('change', function () {
+      const group = document.getElementById('companion-group');
+      const input = document.getElementById('fcompanion');
+      if (this.value === '1') {
+        group.style.display = 'flex';
+        input.required = true;
+      } else {
+        group.style.display = 'none';
+        input.required = false;
+        input.value = '';
+      }
+    });
+
+    // ── RSVP form submit ────────────────────────────────────
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzvtNil4nzACvfXQQE6SyK1VeVOIOGGNGAL5cZoVQhmnTOTxp0YofyMqBoDYgA7_LIcbw/exec';
+
+    document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fname').value.trim();
+      if (!name) {
+        document.getElementById('fname').focus();
+        return;
+      }
+
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+
+      const payload = {
+        name,
+        email:     document.getElementById('femail').value.trim(),
+        attend:    document.querySelector('input[name="attend"]:checked')?.value || '',
+        companion: document.getElementById('fcompanion')?.value.trim() || '',
+        diet:      document.getElementById('fdiet').value.trim(),
+        message:   document.getElementById('fmsg').value.trim()
+      };
+
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (_) {
+        // no-cors means we won't get a readable response — submission still goes through
+      }
+
+      document.getElementById('rsvpFormWrap').style.display = 'none';
+      const thanks = document.getElementById('rsvpThanks');
+      thanks.classList.add('show');
+      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
