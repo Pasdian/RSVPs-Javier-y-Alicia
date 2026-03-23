@@ -741,6 +741,18 @@
     }
     .form-group textarea { resize: vertical; min-height: 100px; }
 
+    .phone-input-wrap {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .phone-input-wrap select {
+      flex: 0 0 auto;
+      width: 7rem;
+    }
+    .phone-input-wrap input {
+      flex: 1 1 auto;
+    }
+
     .rsvp-radio-group {
       display: flex;
       gap: 1rem;
@@ -1103,6 +1115,28 @@
           </div>
 
           <div class="form-group">
+            <label for="fphone">Número de teléfono</label>
+            <div class="phone-input-wrap">
+              <select id="fcountry">
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+39">🇮🇹 +39</option>
+                <option value="+55">🇧🇷 +55</option>
+                <option value="+54">🇦🇷 +54</option>
+                <option value="+57">🇨🇴 +57</option>
+                <option value="+56">🇨🇱 +56</option>
+                <option value="+51">🇵🇪 +51</option>
+                <option value="+598">🇺🇾 +598</option>
+              </select>
+              <input type="tel" id="fphone" placeholder="10 dígitos" />
+            </div>
+          </div>
+
+          <div class="form-group">
             <label>¿Asistirás?</label>
             <div class="rsvp-radio-group">
               <label class="rsvp-radio" id="radio-yes">
@@ -1208,7 +1242,7 @@
     });
 
     // ── RSVP form submit ────────────────────────────────────
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzvtNil4nzACvfXQQE6SyK1VeVOIOGGNGAL5cZoVQhmnTOTxp0YofyMqBoDYgA7_LIcbw/exec';
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxbkB5NL5-fucLFhu10MwauPz2EH2DE2GgCKv_pqJzlK6_7mYFt8iMoHpmyYwC7vfwXQw/exec';
 
     document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1222,9 +1256,13 @@
       btn.textContent = 'Enviando…';
       btn.disabled = true;
 
+      const countryCode = document.getElementById('fcountry').value;
+      const phoneNumber = document.getElementById('fphone').value.trim();
+
       const payload = {
         name,
         email:     document.getElementById('femail').value.trim(),
+        phone:     phoneNumber ? '\'' + countryCode + ' ' + phoneNumber : '',
         attend:    document.querySelector('input[name="attend"]:checked')?.value || '',
         companion: document.getElementById('fcompanion')?.value.trim() || '',
         diet:      document.getElementById('fdiet').value.trim(),
