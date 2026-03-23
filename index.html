@@ -577,6 +577,100 @@
       font-size: 1.8rem;
     }
 
+    /* ─── Vestimenta ─────────────────────────────────────────── */
+    #dresscode { background: var(--cream); }
+
+    .dresscode-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .dresscode-card {
+      background: var(--white);
+      border: 1px solid rgba(184,155,106,0.2);
+      border-radius: 2px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.05);
+    }
+    .dresscode-icon {
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+    .dresscode-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .dresscode-card-text {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+    .dresscode-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-light);
+      border-left: 2px solid var(--rose-light);
+      padding-left: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .dresscode-specs {
+      margin-bottom: 2rem;
+    }
+    .dresscode-specs p {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 2;
+    }
+    .dresscode-specs span {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .dresscode-image-wrap {
+      width: 100%;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(184,155,106,0.15);
+      box-shadow: 0 4px 40px rgba(58,82,66,0.08);
+    }
+    .dresscode-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .dresscode-pinterest {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .dresscode-pinterest a {
+      color: var(--green);
+      border-bottom: 1px solid rgba(58,82,66,0.3);
+      padding-bottom: 1px;
+      transition: color 0.3s, border-color 0.3s;
+      white-space: nowrap;
+    }
+    .dresscode-pinterest a:hover { color: var(--gold); border-color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .dresscode-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── RSVP ───────────────────────────────────────────────── */
     #rsvp { background: var(--green); position: relative; overflow: hidden; }
     #rsvp::before {
@@ -783,6 +877,7 @@
       <li><a href="#home">Inicio</a></li>
       <li><a href="#detalles">Detalles</a></li>
       <li><a href="#travel">Hospedaje</a></li>
+      <li><a href="#dresscode">Vestimenta</a></li>
       <li><a href="#rsvp">RSVP</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" aria-label="Menú">
@@ -796,6 +891,7 @@
     <a href="#home"     onclick="closeDrawer()">Inicio</a>
     <a href="#detalles" onclick="closeDrawer()">Detalles</a>
     <a href="#travel"   onclick="closeDrawer()">Hospedaje</a>
+    <a href="#dresscode" onclick="closeDrawer()">Vestimenta</a>
     <a href="#rsvp"     onclick="closeDrawer()">RSVP</a>
   </div>
 
@@ -944,6 +1040,39 @@
   </section>
 
   <!-- Mesa de Regalos section hidden until registry is ready -->
+
+  <!-- Floral divider -->
+  <div class="floral-divider reveal" style="background:var(--ivory);">
+    <div class="floral-divider-line"></div>
+    <div class="floral-divider-icon">✦</div>
+    <div class="floral-divider-line right"></div>
+  </div>
+
+  <!-- ── Vestimenta ─────────────────────────────────────────── -->
+  <section id="dresscode">
+    <div class="section-inner">
+      <p class="section-label reveal">Vestimenta</p>
+      <h2 class="section-title reveal">Código de Vestimenta: Formal</h2>
+
+      <div class="dresscode-specs reveal">
+        <p><span>Hombres</span> — traje y corbata.</p>
+        <p><span>Mujeres</span> — vestido largo en colores cálidos.</p>
+      </div>
+
+      <div class="dresscode-image-wrap reveal">
+        <img src="assets/dresscode.jpeg" alt="Dress code inspiration" />
+      </div>
+
+      <p class="dresscode-note reveal">
+        Evitar prendas demasiado casuales: vestidos de algodón, sacos sport con pantalón chino, o tenis. La clave es lucir elegante y sentirse cómodo.
+      </p>
+
+      <p class="dresscode-pinterest reveal">
+        Para más inspiración, preparamos un board en Pinterest que pueden usar como guía:
+        <a href="https://pin.it/zpDgwajhe" target="_blank" rel="noopener">ver board →</a>
+      </p>
+    </div>
+  </section>
 
   <!-- ── RSVP ───────────────────────────────────────────────── -->
   <section id="rsvp">
