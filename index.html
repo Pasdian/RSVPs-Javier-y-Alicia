@@ -500,6 +500,53 @@
     .hotel-body {
       padding: 2.5rem 3rem;
     }
+    .hotel-group-label {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: center;
+      margin: 2.5rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hotel-group-label::before,
+    .hotel-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(184,155,106,0.3);
+    }
+    .hotel-contacts {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .hotel-contacts li {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--green);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .hotel-contacts li .contact-label {
+      font-weight: 600;
+      min-width: 10rem;
+      color: var(--green-dark, var(--green));
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+    .hotel-contacts li a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .hotel-contacts li a:hover { text-decoration: underline; }
     .hotel-note {
       font-family: var(--font-serif);
       font-size: 1.15rem;
@@ -527,6 +574,47 @@
       background: var(--rose-light);
       color: var(--white);
     }
+    /* ── Hotel carousel ──────────────────────────────────── */
+    .hotel-carousel { position: relative; overflow: hidden; }
+    .hotel-carousel-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform;
+    }
+    .hotel-carousel-slide { min-width: 100%; flex: 0 0 100%; }
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .carousel-btn {
+      background: transparent;
+      border: 1px solid rgba(184,155,106,0.5);
+      color: var(--green);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      padding: 0;
+      line-height: 1;
+    }
+    .carousel-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .carousel-dots { display: flex; gap: 0.5rem; align-items: center; }
+    .carousel-dots .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(184,155,106,0.3);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dots .dot.active { background: var(--gold); transform: scale(1.4); }
 
     /* ─── Registry ───────────────────────────────────────────── */
     #regalos { background: var(--ivory); }
@@ -1030,24 +1118,134 @@
       <p class="section-label reveal">Para tu estancia</p>
       <h2 class="section-title reveal">Hospedaje Recomendado</h2>
 
-      <div class="hotel-card reveal">
-        <div class="hotel-card-header">
-          <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">HOTEL RECOMENDADO</p>
-          <h3 class="hotel-name">Gamma Cuernavaca Puerta Paraíso</h3>
-          <p class="hotel-addr">701-B Avenida Domingo Diez, Cuernavaca, Morelos 62250</p>
+      <!-- ── Con convenio ── -->
+      <p class="hotel-group-label reveal">Con convenio</p>
+
+      <div class="hotel-carousel reveal">
+        <div class="hotel-carousel-track">
+
+          <!-- Slide 1: Gamma -->
+          <div class="hotel-carousel-slide">
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">HOTEL RECOMENDADO</p>
+                <h3 class="hotel-name">Gamma Cuernavaca Puerta Paraíso</h3>
+                <p class="hotel-addr">701-B Avenida Domingo Diez, Cuernavaca, Morelos 62250</p>
+              </div>
+              <div class="hotel-body">
+                <p class="hotel-note">
+                  El hotel Gamma tiene acceso directo al jardín. Contamos con un convenio especial, por lo que se les aplicará un descuento siempre y cuando reserven directamente con el hotel y utilicen los códigos.
+                </p>
+                <a class="hotel-tag" href="https://drive.google.com/drive/folders/1ufpNQJNpvVUz00kS6AQm632-n-CfEYwK?usp=sharing" target="_blank" rel="noopener">Ver códigos de descuento</a>
+                <p style="font-family:var(--font-sans);font-size:0.78rem;color:var(--green);margin:1.25rem 0 0.5rem;opacity:0.8;">
+                  Los códigos únicamente funcionan reservando directamente con ellos:
+                </p>
+                <ul class="hotel-contacts">
+                  <li><span class="contact-label">Teléfono hotel</span> <a href="tel:+527773132444">+52 777 313 2444 ext 5501</a></li>
+                  <li><span class="contact-label">WhatsApp</span> <a href="https://wa.me/527776147212" target="_blank" rel="noopener">+52 777 614 7212</a></li>
+                </ul>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Gamma+Cuernavaca+Puerta+Paraiso" target="_blank" rel="noopener" style="margin-top:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  Ver en Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Hostería Las Quintas -->
+          <div class="hotel-carousel-slide">
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">CON CONVENIO</p>
+                <h3 class="hotel-name">Hostería Las Quintas</h3>
+              </div>
+              <div class="hotel-body">
+                <p class="hotel-note">
+                  Código de boda disponible — reserva directamente con el hotel para aplicar el descuento.
+                </p>
+                <span class="hotel-tag" style="cursor:default;">Código: B27AYJ</span>
+                <p style="font-family:var(--font-sans);font-size:0.78rem;color:var(--green);margin:1.25rem 0 0.5rem;opacity:0.8;">
+                  Los códigos de boda únicamente funcionan reservando directamente con ellos usando estos números o la página web:
+                </p>
+                <ul class="hotel-contacts">
+                  <li><span class="contact-label">Teléfono</span> <a href="tel:+527771359048">+52 777 135 9048</a></li>
+                  <li><span class="contact-label">Teléfono hotel</span> <a href="tel:+527773491957">+52 777 349 1957</a></li>
+                  <li><span class="contact-label">Página web</span> <a href="https://hosterialasquintas.com.mx/" target="_blank" rel="noopener">hosterialasquintas.com.mx</a></li>
+                </ul>
+                <p style="font-family:var(--font-sans);font-size:0.72rem;color:var(--green);opacity:0.65;margin-bottom:1.5rem;">
+                  Al reservar en línea, ingresa el código en &ldquo;Añadir código promocional&rdquo;.
+                </p>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Hosteria+Las+Quintas+Cuernavaca" target="_blank" rel="noopener" style="margin-top:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  Ver en Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+        <div class="carousel-controls">
+          <button class="carousel-btn prev" aria-label="Anterior">&#8249;</button>
+          <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+          </div>
+          <button class="carousel-btn next" aria-label="Siguiente">&#8250;</button>
         </div>
-        <div class="hotel-body">
-          <p class="hotel-note">
-            El hotel Gamma tiene acceso directo al jardín. Contamos con un convenio especial, por lo que se les aplicará un descuento siempre y cuando reserven directamente con el hotel y utilicen los códigos.
-          </p>
-          <a class="hotel-tag" href="https://drive.google.com/drive/folders/1ufpNQJNpvVUz00kS6AQm632-n-CfEYwK?usp=sharing" target="_blank" rel="noopener">Descuento disponible con código especial</a>
-          <br><br>
-          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Gamma+Cuernavaca+Puerta+Paraiso" target="_blank" rel="noopener" style="margin-top:0;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            Ver en Google Maps
-          </a>
+      </div><!-- /carousel -->
+
+      <!-- ── Sin convenio ── -->
+      <p class="hotel-group-label reveal">Sin convenio</p>
+
+      <div class="hotel-carousel reveal">
+        <div class="hotel-carousel-track">
+
+          <!-- Slide 1: Villa Béjar -->
+          <div class="hotel-carousel-slide">
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">OPCIÓN ADICIONAL</p>
+                <h3 class="hotel-name">Hotel Villa Béjar Cuernavaca</h3>
+              </div>
+              <div class="hotel-body">
+                <a class="hotel-tag" href="https://www.villabejar.mx/cuernavaca" target="_blank" rel="noopener">Visitar sitio web</a>
+                <br><br>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Hotel+Villa+Bejar+Cuernavaca" target="_blank" rel="noopener" style="margin-top:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  Ver en Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Holiday Inn -->
+          <div class="hotel-carousel-slide">
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <p class="hotel-addr" style="margin-bottom:0.75rem;letter-spacing:0.15em;">OPCIÓN ADICIONAL</p>
+                <h3 class="hotel-name">Holiday Inn Express &amp; Suites Cuernavaca</h3>
+                <p class="hotel-addr">José María Morelos 133, Las Palmas, 62050 Cuernavaca, Mor.</p>
+              </div>
+              <div class="hotel-body">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Express+Suites+Cuernavaca+Jose+Maria+Morelos+133" target="_blank" rel="noopener" style="margin-top:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  Ver en Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+        <div class="carousel-controls">
+          <button class="carousel-btn prev" aria-label="Anterior">&#8249;</button>
+          <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+          </div>
+          <button class="carousel-btn next" aria-label="Siguiente">&#8250;</button>
         </div>
-      </div>
+      </div><!-- /carousel -->
+
     </div>
   </section>
 
@@ -1217,6 +1415,30 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
+
+    // ── Hotel carousels ──────────────────────────────────────
+    document.querySelectorAll('.hotel-carousel').forEach(carousel => {
+      const track  = carousel.querySelector('.hotel-carousel-track');
+      const slides = carousel.querySelectorAll('.hotel-carousel-slide');
+      const dots   = carousel.querySelectorAll('.dot');
+      const prev   = carousel.querySelector('.carousel-btn.prev');
+      const next   = carousel.querySelector('.carousel-btn.next');
+      let cur = 0;
+      function goTo(i) {
+        cur = ((i % slides.length) + slides.length) % slides.length;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, j) => d.classList.toggle('active', j === cur));
+      }
+      prev.addEventListener('click', () => goTo(cur - 1));
+      next.addEventListener('click', () => goTo(cur + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+      let sx = 0;
+      track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        const diff = sx - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(cur + (diff > 0 ? 1 : -1));
+      });
+    });
 
     // ── RSVP radio toggle ───────────────────────────────────
     document.querySelectorAll('input[name="attend"]').forEach(radio => {
