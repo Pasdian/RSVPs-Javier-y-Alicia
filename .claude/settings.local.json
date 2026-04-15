@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(claude plugin:*)",
-      "Bash(firecrawl:*)"
+      "Bash(firecrawl:*)",
+      "Bash(code:*)"
     ]
   }
 }

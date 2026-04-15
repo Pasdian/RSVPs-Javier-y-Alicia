@@ -129,6 +129,135 @@
       color: var(--text-mid);
     }
 
+    /* ─── Save the Date Overlay ─────────────────────────────── */
+    #std-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: var(--green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    #std-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    /* noise texture, same as hero */
+    #std-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .std-corner-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(253,249,244,0.55);
+      cursor: pointer;
+      transition: color 0.25s;
+      z-index: 1;
+    }
+    .std-corner-close:hover { color: rgba(253,249,244,0.9); }
+    .std-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .std-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.8rem;
+    }
+    .std-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin: 1.4rem auto;
+    }
+    .std-names {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 300;
+      color: var(--ivory);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+    }
+    .std-amp {
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      color: var(--gold-light);
+      display: block;
+      margin: 0.15em 0;
+    }
+    .std-date {
+      font-family: var(--font-sans);
+      font-size: clamp(0.75rem, 2.2vw, 1rem);
+      font-weight: 200;
+      letter-spacing: 0.45em;
+      color: var(--rose-light);
+      margin-top: 0.3rem;
+    }
+    .std-location {
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      color: rgba(253,249,244,0.5);
+      margin-top: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+    .std-cta {
+      margin-top: 3rem;
+      display: inline-block;
+      padding: 0.85rem 2.8rem;
+      border: 1px solid rgba(184,155,106,0.55);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .std-cta:hover {
+      background: rgba(184,155,106,0.15);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+    /* Botanical corner accents */
+    .std-botanical {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+    .std-botanical.tl { top: -20px; left: -20px; transform: rotate(0deg); }
+    .std-botanical.br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
     /* ─── Hero ───────────────────────────────────────────────── */
     #home {
       position: relative;
@@ -970,6 +1099,47 @@
 </head>
 <body>
 
+  <!-- ── Save the Date Overlay ─────────────────────────────── -->
+  <div id="std-overlay" role="dialog" aria-modal="true" aria-label="Save the Date">
+
+    <span class="std-corner-close" id="stdClose" role="button" tabindex="0">Saltar ✕</span>
+
+    <!-- corner botanical accents (reuse hero SVG leaves) -->
+    <svg class="std-botanical tl" width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 230 Q 60 160 130 130 Q 60 160 30 230Z" fill="#f5e8e4"/>
+      <path d="M10 200 Q 80 140 150 80 Q 80 140 10 200Z" fill="#e8c4bc" opacity=".6"/>
+      <path d="M50 240 Q 100 180 160 100 Q 100 180 50 240Z" fill="#f5e8e4" opacity=".5"/>
+      <path d="M20 210 Q 50 170 90 120 C 100 105 120 90 150 70 Q 90 120 20 210Z" fill="#d4b98a" opacity=".4"/>
+      <ellipse cx="40" cy="220" rx="8" ry="18" transform="rotate(-40 40 220)" fill="#e8c4bc" opacity=".5"/>
+      <ellipse cx="70" cy="190" rx="7" ry="16" transform="rotate(-55 70 190)" fill="#f5e8e4" opacity=".4"/>
+    </svg>
+    <svg class="std-botanical br" width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 230 Q 60 160 130 130 Q 60 160 30 230Z" fill="#f5e8e4"/>
+      <path d="M10 200 Q 80 140 150 80 Q 80 140 10 200Z" fill="#e8c4bc" opacity=".6"/>
+      <path d="M50 240 Q 100 180 160 100 Q 100 180 50 240Z" fill="#f5e8e4" opacity=".5"/>
+      <path d="M20 210 Q 50 170 90 120 C 100 105 120 90 150 70 Q 90 120 20 210Z" fill="#d4b98a" opacity=".4"/>
+      <ellipse cx="40" cy="220" rx="8" ry="18" transform="rotate(-40 40 220)" fill="#e8c4bc" opacity=".5"/>
+      <ellipse cx="70" cy="190" rx="7" ry="16" transform="rotate(-55 70 190)" fill="#f5e8e4" opacity=".4"/>
+    </svg>
+
+    <div class="std-inner">
+      <p class="std-label">Save the Date</p>
+
+      <div class="std-names">
+        <span>Alicia</span>
+        <span class="std-amp">&amp;</span>
+        <span>Javier</span>
+      </div>
+
+      <div class="std-divider"></div>
+
+      <p class="std-date">27 &middot; 02 &middot; 2027</p>
+      <p class="std-location">Cuernavaca, México</p>
+
+      <button class="std-cta" id="stdEnter">Ver invitación</button>
+    </div>
+  </div>
+
   <!-- ── Navigation ─────────────────────────────────────────── -->
   <nav id="nav">
     <div class="nav-monogram">A &amp; J</div>
@@ -1390,6 +1560,26 @@
 
   <!-- ── Scripts ────────────────────────────────────────────── -->
   <script>
+    // ── Save the Date overlay ───────────────────────────────
+    const stdOverlay = document.getElementById('std-overlay');
+    function dismissOverlay() {
+      stdOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+      localStorage.setItem('std-seen', '1');
+    }
+    if (localStorage.getItem('std-seen')) {
+      stdOverlay.classList.add('hidden');
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+    document.getElementById('stdEnter').addEventListener('click', dismissOverlay);
+    const stdClose = document.getElementById('stdClose');
+    stdClose.addEventListener('click', dismissOverlay);
+    stdClose.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') dismissOverlay(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !stdOverlay.classList.contains('hidden')) dismissOverlay();
+    });
+
     // ── Nav scroll ──────────────────────────────────────────
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
