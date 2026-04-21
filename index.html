@@ -745,53 +745,117 @@
     }
     .carousel-dots .dot.active { background: var(--gold); transform: scale(1.4); }
 
-    /* ─── Registry ───────────────────────────────────────────── */
+    /* ─── Registry / Regalos ─────────────────────────────────── */
     #regalos { background: var(--ivory); }
 
-    .registry-card {
-      text-align: center;
-      padding: 5rem 3rem;
-      border: 1px solid rgba(184,155,106,0.2);
-      background: var(--white);
-      border-radius: 2px;
-      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    .registry-card::before, .registry-card::after {
-      content: '';
-      position: absolute;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,137,122,0.08) 0%, transparent 70%);
-    }
-    .registry-card::before { top: -80px; left: -80px; }
-    .registry-card::after  { bottom: -80px; right: -80px; }
-    .registry-soon {
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--green);
-      margin-bottom: 1rem;
-    }
-    .registry-sub {
+    .regalos-intro {
       font-family: var(--font-serif);
       font-style: italic;
       font-size: 1.1rem;
-      color: var(--text-light);
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 3rem;
+      max-width: 640px;
     }
-    .registry-ring {
-      width: 80px;
-      height: 80px;
-      border: 1px solid var(--gold-light);
-      border-radius: 50%;
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .gift-card {
+      background: var(--white);
+      border: 1px solid rgba(184,155,106,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
+    }
+
+    .gift-card-header {
+      background: var(--green);
+      padding: 1.75rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .gift-card-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 24px;
+      background: var(--white);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .gift-card-name {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .gift-card-fullname {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      margin-top: 0.35rem;
+    }
+
+    .gift-card-body { padding: 2rem 2rem 1.75rem; }
+
+    .gift-region { margin-bottom: 1.75rem; }
+    .gift-region:last-child { margin-bottom: 0; }
+
+    .gift-region-title {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 2rem;
-      color: var(--gold);
-      font-size: 1.8rem;
+      gap: 0.75rem;
+    }
+    .gift-region-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(184,155,106,0.25);
+    }
+
+    .gift-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(184,155,106,0.1);
+    }
+    .gift-field:last-child { border-bottom: none; }
+
+    .gift-field-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      margin-right: 1rem;
+    }
+
+    .gift-field-value {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      .gift-grid { grid-template-columns: 1fr; }
     }
 
     /* ─── Vestimenta ─────────────────────────────────────────── */
@@ -1147,6 +1211,7 @@
       <li><a href="#home">Inicio</a></li>
       <li><a href="#detalles">Detalles</a></li>
       <li><a href="#travel">Hospedaje</a></li>
+      <li><a href="#regalos">Regalos</a></li>
       <li><a href="#dresscode">Vestimenta</a></li>
       <li><a href="#rsvp">RSVP</a></li>
     </ul>
@@ -1161,6 +1226,7 @@
     <a href="#home"     onclick="closeDrawer()">Inicio</a>
     <a href="#detalles" onclick="closeDrawer()">Detalles</a>
     <a href="#travel"   onclick="closeDrawer()">Hospedaje</a>
+    <a href="#regalos"  onclick="closeDrawer()">Regalos</a>
     <a href="#dresscode" onclick="closeDrawer()">Vestimenta</a>
     <a href="#rsvp"     onclick="closeDrawer()">RSVP</a>
   </div>
@@ -1419,7 +1485,86 @@
     </div>
   </section>
 
-  <!-- Mesa de Regalos section hidden until registry is ready -->
+  <!-- Floral divider -->
+  <div class="floral-divider reveal" style="background:var(--cream);">
+    <div class="floral-divider-line"></div>
+    <div class="floral-divider-icon">✦</div>
+    <div class="floral-divider-line right"></div>
+  </div>
+
+  <!-- ── Regalos ───────────────────────────────────────────── -->
+  <section id="regalos">
+    <div class="section-inner">
+      <p class="section-label reveal">Un detalle</p>
+      <h2 class="section-title reveal">Regalos</h2>
+
+      <p class="regalos-intro reveal">
+        Debido a que planeamos mudarnos en un futuro cercano, hemos decidido no tener mesa de regalos.
+        Para quienes deseen acompañarnos con un detalle, una contribución para esta nueva etapa será muy apreciada.
+      </p>
+
+      <div class="gift-grid reveal">
+
+        <!-- Alicia -->
+        <div class="gift-card">
+          <div class="gift-card-header">
+            <p class="gift-card-name">Alicia</p>
+            <p class="gift-card-fullname">Carmen Alicia Echeveste Sanchez</p>
+          </div>
+          <div class="gift-card-body">
+            <div class="gift-region">
+              <p class="gift-region-title">México</p>
+              <div class="gift-field">
+                <span class="gift-field-label">Banco</span>
+                <span class="gift-field-value">Santander</span>
+              </div>
+              <div class="gift-field">
+                <span class="gift-field-label">CLABE</span>
+                <span class="gift-field-value">014180200120187438</span>
+              </div>
+            </div>
+            <div class="gift-region">
+              <p class="gift-region-title">Estados Unidos</p>
+              <div class="gift-field">
+                <span class="gift-field-label">Routing #</span>
+                <span class="gift-field-value">313084565</span>
+              </div>
+              <div class="gift-field">
+                <span class="gift-field-label">Account #</span>
+                <span class="gift-field-value">0056178690</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Javier -->
+        <div class="gift-card">
+          <div class="gift-card-header">
+            <p class="gift-card-name">Javier</p>
+            <p class="gift-card-fullname">Javier Pascal Flores</p>
+          </div>
+          <div class="gift-card-body">
+            <div class="gift-region">
+              <p class="gift-region-title">México</p>
+              <div class="gift-field">
+                <span class="gift-field-label">Banco</span>
+                <span class="gift-field-value">BBVA</span>
+              </div>
+              <div class="gift-field">
+                <span class="gift-field-label">Cuenta</span>
+                <span class="gift-field-value">158 111 8013</span>
+              </div>
+              <div class="gift-field">
+                <span class="gift-field-label">CLABE</span>
+                <span class="gift-field-value">012180015811180135</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- Floral divider -->
   <div class="floral-divider reveal" style="background:var(--ivory);">
