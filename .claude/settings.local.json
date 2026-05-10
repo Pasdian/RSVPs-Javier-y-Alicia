@@ -3,7 +3,11 @@
     "allow": [
       "Bash(claude plugin:*)",
       "Bash(firecrawl:*)",
-      "Bash(code:*)"
+      "Bash(code:*)",
+      "WebFetch(domain:www.anticavilla.com)",
+      "WebFetch(domain:www.tripadvisor.com)",
+      "WebFetch(domain:www.quintalasflores.com)",
+      "WebFetch(domain:www.casafrancisco.com.mx)"
     ]
   }
 }
