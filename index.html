@@ -998,6 +998,15 @@
 
     #rsvp .section-label { color: var(--gold-light); }
     #rsvp .section-title { color: var(--cream); }
+    .rsvp-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--cream);
+      opacity: 0.85;
+      line-height: 1.7;
+      max-width: 480px;
+    }
 
     .rsvp-form {
       display: flex;
@@ -1721,6 +1730,7 @@
     <div class="section-inner">
       <p class="section-label reveal">Confirmación de asistencia</p>
       <h2 class="section-title reveal">RSVP</h2>
+      <p class="rsvp-note reveal">Todos los invitados deben de llenar el RSVP.</p>
 
       <div id="rsvpFormWrap">
         <form class="rsvp-form reveal" id="rsvpForm" novalidate>
@@ -1767,19 +1777,6 @@
                 <input type="radio" name="attend" value="no" /> Lamentablemente no podré
               </label>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="fguests">Número de acompañantes</label>
-            <select id="fguests">
-              <option value="0">Solo yo</option>
-              <option value="1">+ 1 persona</option>
-            </select>
-          </div>
-
-          <div class="form-group" id="companion-group" style="display:none;">
-            <label for="fcompanion">Nombre del acompañante</label>
-            <input type="text" id="fcompanion" placeholder="Nombre completo" />
           </div>
 
           <div class="form-group">
@@ -1892,20 +1889,6 @@
       });
     });
 
-    // ── Companion field toggle ───────────────────────────────
-    document.getElementById('fguests').addEventListener('change', function () {
-      const group = document.getElementById('companion-group');
-      const input = document.getElementById('fcompanion');
-      if (this.value === '1') {
-        group.style.display = 'flex';
-        input.required = true;
-      } else {
-        group.style.display = 'none';
-        input.required = false;
-        input.value = '';
-      }
-    });
-
     // ── RSVP form submit ────────────────────────────────────
     const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxbkB5NL5-fucLFhu10MwauPz2EH2DE2GgCKv_pqJzlK6_7mYFt8iMoHpmyYwC7vfwXQw/exec';
 
@@ -1929,7 +1912,6 @@
         email:     document.getElementById('femail').value.trim(),
         phone:     phoneNumber ? '\'' + countryCode + ' ' + phoneNumber : '',
         attend:    document.querySelector('input[name="attend"]:checked')?.value || '',
-        companion: document.getElementById('fcompanion')?.value.trim() || '',
         diet:      document.getElementById('fdiet').value.trim(),
         message:   document.getElementById('fmsg').value.trim()
       };
