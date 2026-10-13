@@ -777,6 +777,49 @@
       max-width: 640px;
     }
 
+    .gift-registry {
+      background: var(--white);
+      border: 1px solid rgba(184,155,106,0.2);
+      border-radius: 2px;
+      box-shadow: 0 4px 40px rgba(58,82,66,0.06);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .gift-registry-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .gift-registry-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .gift-registry-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      border-radius: 1px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .gift-registry-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
     .gift-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1616,9 +1659,15 @@
       <h2 class="section-title reveal">Regalos</h2>
 
       <p class="regalos-intro reveal">
-        Debido a que planeamos mudarnos en un futuro cercano, hemos decidido no tener mesa de regalos.
-        Para quienes deseen acompañarnos con un detalle, una contribución para esta nueva etapa será muy apreciada.
+        Debido a que planeamos mudarnos en un futuro cercano, hemos preparado una mesa de regalos digital.
+        Para quienes deseen acompañarnos con un detalle, también pueden hacer una contribución directa para esta nueva etapa, que será muy apreciada.
       </p>
+
+      <div class="gift-registry reveal">
+        <p class="gift-registry-label">Mesa de regalos digital</p>
+        <p class="gift-registry-text">Consulta nuestra mesa de regalos.</p>
+        <a class="gift-registry-btn" href="https://regalashop.com.mx/evento/1800" target="_blank" rel="noopener noreferrer">Ver mesa de regalos</a>
+      </div>
 
       <div class="gift-grid reveal">
 
