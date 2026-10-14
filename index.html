@@ -820,6 +820,25 @@
     }
     .gift-registry-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
 
+    .gift-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin: 3rem 0 2rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      text-align: center;
+    }
+    .gift-divider::before,
+    .gift-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(184,155,106,0.35);
+    }
+
     .gift-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1659,8 +1678,8 @@
       <h2 class="section-title reveal">Regalos</h2>
 
       <p class="regalos-intro reveal">
-        Debido a que planeamos mudarnos en un futuro cercano, hemos preparado una mesa de regalos digital.
-        Para quienes deseen acompañarnos con un detalle, también pueden hacer una contribución directa para esta nueva etapa, que será muy apreciada.
+        Preparamos una mesa de regalos digital con experiencias que nos encantaría vivir en nuestra luna de miel, 
+        y también un espacio para contribuir a nuestros próximos grandes pasos. Cualquier detalle será muy apreciado y significa mucho para nosotros.
       </p>
 
       <div class="gift-registry reveal">
@@ -1668,6 +1687,9 @@
         <p class="gift-registry-text">Consulta nuestra mesa de regalos.</p>
         <a class="gift-registry-btn" href="https://regalashop.com.mx/evento/1800" target="_blank" rel="noopener noreferrer">Ver mesa de regalos</a>
       </div>
+
+      <p class="gift-divider reveal">Si desean regalarnos algo para esta nueva etapa, pueden contribuir a los proyectos y sueños que vienen. Les pedimos que pongan
+         su nombre o una referencia en el depósito, para saber a quién agradecerle.</p>
 
       <div class="gift-grid reveal">
 
